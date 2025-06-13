@@ -1,0 +1,14 @@
+
+title: "Research Methods in Management - Course Project"
+author: "Mkadmi Nabil"
+
+
+# Preface
+
+This report applies the six core statistical methods covered in the Research Methods in Management course to various datasets:
+
+- **ANOVA**, **Discriminant Analysis**, **PCA**, and **MDS** on the vaccine dataset.
+- **Conjoint Analysis** on a designed car-preference survey.
+- **PLS-SEM** on the built-in `mobi` dataset.
+
+Each chapter includes data description, assumption checks, analysis code, results, and managerial interpretations.

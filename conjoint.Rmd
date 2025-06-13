@@ -1,0 +1,32 @@
+## 3. Conjoint Analysis: Car-Purchase Preferences
+
+### 3.1 Experimental Design & Data
+
+
+library(conjoint)
+design <- read.csv("design.csv", row.names = 1)
+pref <- read.table("pref.txt", header = TRUE)
+
+
+### 3.2 Estimating Utilities
+
+
+cj <- conjoint(design, pref)
+cj$utilities
+
+
+### 3.3 Attribute Importance
+
+
+importance(cj)
+
+
+### 3.4 Visualization
+
+
+plot(cj)
+
+
+### 3.5 Interpretation
+
+- Engine type dominates preferences (~66% importance).

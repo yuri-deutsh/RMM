@@ -1,0 +1,35 @@
+## 4. Principal Component Analysis: Vaccine Timing & Coverage Patterns
+
+### 4.1 Data Loading
+
+
+library(readxl)
+library(FactoMineR)
+library(factoextra)
+
+vax <- read_excel("vaccine (1).xlsx")
+vars_pca <- c("bcg_age", "polio1_age", "polio2_age", "polio3_age",
+              "polio4_age", "pent1_age", "pent2_age", "pent3_age",
+              "measles_age", "vaccinationlevel", "MotherAgeBirth",
+              "FatherAgeBirth", "TotalChildren")
+vax_num <- na.omit(vax[, vars_pca])
+
+
+### 4.2 PCA & Scree Plot
+
+
+res.pca <- PCA(vax_num, scale.unit = TRUE, graph = FALSE)
+fviz_eig(res.pca, addlabels = TRUE, ylim = c(0, 50))
+
+
+### 4.3 Contributions & Biplot
+
+
+fviz_contrib(res.pca, choice = "var", axes = 1, top = 10)
+fviz_contrib(res.pca, choice = "var", axes = 2, top = 10)
+fviz_pca_biplot(res.pca, repel = TRUE, col.var = "contrib")
+
+
+### 4.4 Interpretation
+
+- PC1: overall timeliness & coverage; PC2: mid vs. late doses.

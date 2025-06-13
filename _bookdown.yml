@@ -1,0 +1,9 @@
+book_filename: "Course_Project"
+rmd_files:
+  - "index.Rmd"
+  - "anova.Rmd"
+  - "discriminant.Rmd"
+  - "conjoint.Rmd"
+  - "pca.Rmd"
+  - "mds.Rmd"
+  - "sem.Rmd"

@@ -1,0 +1,38 @@
+## 6. Structural Equation Modeling: PLS-SEM with the 'mobi' Dataset
+
+### 6.1 Load Data & Packages
+
+
+library(plspm)
+data(mobi)
+
+
+### 6.2 Define Model & Blocks
+
+
+# Path matrix: image -> service -> value -> loyalty
+mobi_model <- matrix(c(
+  0,0,0,0,
+  1,0,0,0,
+  0,1,0,0,
+  0,0,1,0
+), nrow = 4, byrow = TRUE)
+colnames(mobi_model) <- rownames(mobi_model) <- c("image","service","value","loyalty")
+
+mobi_blocks <- list(
+  image = c("image","claim","test","card"),
+  service = c("service"),
+  value = c("price","general","value"),
+  loyalty = c("complain","loyalty")
+)
+mobi_modes <- rep("A", 4)
+
+# Run PLS-PM
+plspm_res <- plspm(mobi, mobi_model, mobi_blocks, modes = mobi_modes)
+summary(plspm_res)
+
+
+### 6.3 Interpretation
+
+- High path coefficients (>0.7) indicate strong relationships between constructs.
+- R^2 for loyalty >0.5 suggests good explanatory power.

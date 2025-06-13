@@ -1,0 +1,36 @@
+## 5. Multidimensional Scaling: Visualizing Vaccine Profile Distances
+
+### 5.1 Distance Matrix
+
+
+library(readxl)
+vax <- read_excel("vaccine (1).xlsx")
+vars_mds <- c("bcg_age", "polio1_age", "polio2_age", "polio3_age",
+              "polio4_age", "pent1_age", "pent2_age", "pent3_age",
+              "measles_age", "vaccinationlevel")
+data_mds <- na.omit(vax[, vars_mds])
+d <- dist(data_mds)
+
+
+### 5.2 Classical MDS
+
+
+mds_fit <- cmdscale(d, k = 2, eig = TRUE)
+coords <- mds_fit$points
+eig <- mds_fit$eig
+explained <- eig[1:2] / sum(eig[eig > 0]) * 100
+
+
+### 5.3 Plot
+
+
+plot(coords[,1], coords[,2],
+     xlab = paste0("Dim1 (", round(explained[1],1), "%)"),
+     ylab = paste0("Dim2 (", round(explained[2],1), "%)"),
+     main = "Classical MDS of Vaccine Profiles",
+     pch = 19)
+
+
+### 5.4 Interpretation
+
+- Dimensions represent major profile differences.
